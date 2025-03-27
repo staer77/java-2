@@ -19,7 +19,7 @@
 * System.in vs. Scanner
 * operator 대입, 비교, 연산, 논리
 * conditional
-'''
+```
 public class Bar {
     public static void main(String[] args) {
         final double PI = 3.14;
@@ -30,7 +30,7 @@ public class Bar {
         System.out.println("원의 면적 = " + circleArea);
     }
 }
-'''
+```
 
 ## 25년 3월 20일(3주차)
 - 자바 프로젝트 생성
