@@ -6,6 +6,45 @@
 3. 배운내용 & 코드
 4. 최근 날짜가 제일 위로 올라오게
 
+## 25년 4월 10일(6주차)
+* Class and Object
+* object - 특성{state - 캡슐화(Encapsulation), 상속(Inheritance), 다형성(Polymorphism)}, 행위(behavior), 상호작용(Interaction)
+* Overloading - "한 클래스 내"에서 동일 명이지만 다르게 작동하는 여러 메소드, Overriding - 슈퍼 클래스의 메소드를 동일 명으로 "서브 클래스마다 다르게" 구현
+* 객체 지향 언어의 목적 1. 소프트웨어 생산성 향상2.실세계에 대한 쉬운 모델링
+* 절차 지향, 객체 지향 프로그래밍의 특징
+* class : 객체의 속성과 행위 선언. 객체의 설계도 혹은 틀, object : 클래스의 틀로 찍어낸 실체
+* 메모리 공간을 갖는 구체적인 실체 instane라고도 부름
+* class 구성 요소 외부(package, import, external class), 내부(field(멤버 변수), method(멤버 함수), constructor, inner class, this 키워드, this() 매서드)
+* 객체 생성과 활용 1. 래퍼런스 변수 선언 2. 객체 생성 new 연산자 이용 3. 객체 멤버 접근 점(.) 연산자 이용
+* 생성자(객체가 생성될 때 초기화 목적으로 실행되는 메소드)
+* 생성자 목적은 객체 생성 시 초기화, 리턴 타입을 지정할 수 없음
+
+```
+public class Ex41Circle {
+    int radius;
+    String name;
+
+    public double getArea() { // 멤버 메소드
+        return 3.14 * radius * radius;
+    }
+
+    public static void main(String[] args) {
+        Ex41Circle pizza;
+        pizza = new Ex41Circle(); // Circle 객체 생성
+        pizza.radius = 10; // 피자 반지름을 10으로 설정
+        pizza.name = "자바피자"; // 피자의 이름 설정
+        double area = pizza.getArea(); // 피자의 면적 알아내기
+        System.out.println(pizza.name + "의 면적은 " + area);
+
+        Ex41Circle donut = new Ex41Circle(); // Circle 객체 생성, 이 방법을 많이 사용함
+        donut.radius = 2; // 도넛의 반지름을 2로 설정
+        donut.name = "자바도넛"; // 도넛의 이름 설정
+        area = donut.getArea(); // 도넛의 면적 알아내기
+        System.out.println(donut.name + "의 면적은 " + area);
+    }
+}
+```
+
 ## 25년 4월 3일(5주차)
 * 반복문과 배열, 예외처리
 * for, while, do-while
