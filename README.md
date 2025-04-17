@@ -6,6 +6,13 @@
 3. 배운내용 & 코드
 4. 최근 날짜가 제일 위로 올라오게
 
+## 25년 4월 17일(7주차)
+* 
+
+```
+
+```
+
 ## 25년 4월 10일(6주차)
 * Class and Object
 * object - 특성{state - 캡슐화(Encapsulation), 상속(Inheritance), 다형성(Polymorphism)}, 행위(behavior), 상호작용(Interaction)
