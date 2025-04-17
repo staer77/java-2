@@ -7,10 +7,47 @@
 4. 최근 날짜가 제일 위로 올라오게
 
 ## 25년 4월 17일(7주차)
-* 
+* 생성자(Constructor)의 종류 default, 
+* this_Reference (this.member 형태로 멤버를 접근할 때 사용)
+* 객체 배열(object_array)
+* 메소드, 인자 전달(argument :  함수를 호출할때 전달되는 실제 값), 매개변수(parameter : 함수의 정의부분에 나열되어 있는 변수)
+* 객체가 전달되는 경우는 객체의 reference만 전달 : 매개변수가 실 인자 객체 공유
+* 배열이 전달되는 경우는 배열 래퍼런스만 매개 변수에 전달 : 배열 통째로 전달 되지 않음, 객체가 전달되는 경우와 동일 : 매개 변수가 실인자의 배열 공유
+* 메소드 Overloading -> 매개 변수 같으면 오버로딩 실패함
+* 객체 치환 -> 객체 복사X 래퍼런스 복사O
+* 객체 소멸 : 할당 받은 객체와 메모리를 JVM으로 되돌려 주는 행위
+* garbage : 가리키는 reference가 하나도 없는 객체
+* garbage collector : 가용 메모리 공간이 일정 이하로 부족해질 때 가비지 컬렉터에 의해 자동 수행
+* JAVA Package : 관련 있는 클래스파일을 저장하여 관리하는 dirctory
+* 접근 지정자(Access modifiers) : private, protected, public, 디폴트(접근 지정자 생략)
+* 클래스 접근 지정 : 다른 클래스에서 사용하도록 허용할 지 지정
+* 멤버 접근 지정 : public -> 패키지에 관계 없이 모든 클래스에게 접근 허용
+* static, non-static -> 모든 객체에 멤버 생성, static은 멤버 공유 ※ 공유 특성이 다름
 
 ```
+public class Ex48ArrayParameter { // 인자로 배열이 전달되는 예 , 객체 배열도 가능함
+    static void replaceSpace(char a[]) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == ' ') {
+                a[i] = '.';
+            }
+        }
+    }
 
+    static void printCharArray(char a[]) {
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        char c[] = {'H', 'E', 'L', 'L', 'O'};
+        printCharArray(c);
+        replaceSpace(c);
+        printCharArray(c);
+    }
+}
 ```
 
 ## 25년 4월 10일(6주차)
