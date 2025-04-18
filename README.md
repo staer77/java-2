@@ -6,6 +6,87 @@
 3. 배운내용 & 코드
 4. 최근 날짜가 제일 위로 올라오게
 
+## 25년 4월 18일(9주차, 보강)
+* static 제약조건, final class and method
+* final 필드 : 상수를 선언할 때 사용
+* 상속(inheritance)의 필요성 : 중복 제거, 간결해진 클래스 구조
+* 클래스 상속과 객체, extends 키워드 사용, super / sub class 슈퍼클래스에 선언된 필드와 메소드 선언 필요 없음
+* 서브 클래스는 슈퍼클래스 객체와 별개, 슈퍼 클래스 멤버는 포함
+* 자바 상속 : 하나의 클래스가 둘 이상의 super class를 동시에 상속 받는 것, mutiple inheritance 불허 / interface의 다중 상속 허용, 모호성(Ambiguity) 문제 : 두 부모 클래스에 동명의 멤버(변수나 함수)가 존재할 경우 어떤 걸 호출 해야할 지 모호해짐
+* super class의 member에 대한 sub class의 접근, super class member의 Access modifiers
+* protected member access : 같은 패키지의 모든 클래스 허용, 상속되는 서브 클래스가 패키지 상관 없이 허용
+
+* super class and sub class 생성자 호출 및 실행 관계
+* 서브 클래스 / 슈퍼 클래스의 생성자 호출과 실행, 호출 순서 : 서브 -> 슈퍼, 실행 순서 : 슈퍼 -> 서브, 서브클래스의 객체가 생성될 때 : 생성자 모두 실행
+
+* sub class / super class의 생성자 선택, 각각 여러 개의 생성자 작성 가능, 서브 클래스의 객체가 생성될 때 : super class 1개 / sub class 1개가 실행, 생성자가 결정되는 방식 : 개발자의 명시적 선택 / 컴파일러가 기본 생성자 선택
+
+* 컴파일러에 의해 슈퍼 클래스의 기본 생성자가 묵시적 선택 : 자동으로 슈퍼클래스의 기본 생성자와 짝을 맺음 / 서브 클래스의 매개 변수를 가진 생성자에 대해서도 슈퍼 클래스의 기본 생성자가 자동 선택
+
+* super(parameter)로 슈퍼클래스의 생성자 명시적 선택 : 인자를 이용하여 슈퍼 클래스의 적당한 생성자 호출, 첫 라인에 와야 함
+
+* upcasting : 기본 클래스의 포인터(슈퍼 클래스 래퍼런스)로 파생 클래스의 객체(서브 클래스 객체)를 가리키는 것
+
+* downcastion : 업캐스팅 된 것을 다시 원래대로 되돌리는 것, 슈퍼 클래스 래퍼런스를 서브 클래스 래퍼런스에 대입, 반드시 명시적 타입 변환 지정
+
+* 업캐스팅된 래퍼런스로는 객체의 실제 타입을 구분하기 어려움, 슈퍼클래스는 여러 서브 클래스에 상속되기 때문
+
+* instanceof : 래퍼런스가 가리키는 객체의 타입 식별하기 위해 사용, true/false의 불린 값으로 변환
+
+* method Overriding : 서브 클래에서 슈퍼 클래스의 메소드 중복 작성, 조건은 슈퍼 클래스 메소드의 원형(메소드이름, 인자타입 및 개수, 리턴 타입) 동일하게 작성
+
+* 서브 클래스 객체와 오버라이딩된 메소드 호출 -> 오버라이딩 한 메소드가 실행됨을 보장
+
+* 오버라이딩 목적 : 다형성 실현, 하나의 인터페이스(같은 이름)에 서로 다른 구현, 슈퍼 클래스의 메소드를 서브 클래스에서 각각 목적에 맞게 다르게 구현
+
+* 동적 바인딩 - 오버라이딩된 메소드 호출 -> superobject(키워드 아님) 하나만 있는 응용프로그램의 경우 혹은 상속받은 경우 모두 동적 바인딩을 한다. ※ 오버라이딩 메소드가 항상 호출된다. 
+
+* super 키워드로 슈퍼 클래스의 멤버 접근 -> super.슈퍼클래스의 멤버, 서브 클래스에서만 사용, 슈퍼 클래스 메소드 호출 시 super로 이루어지는 메소드 호출 : 정적 바인딩, 슈퍼 클래스의 필드 접근
+
+```
+public class Ex51ColorPointEx {
+    public static void main(String[] args) {
+        Point p = new Point(); // Point 객체 생성
+        p.set(1, 2); // Point 클래스의 set() 호출
+        p.showPoint();
+
+        ColorPoint cp = new ColorPoint();
+        cp.set(3, 4); // Point 클래스의 set() 호출
+        cp.setColor("red"); // ColorPoint 클래스의 set() 호출
+        cp.showColorPoint(); // 컬러와 좌표 출력
+    }
+}
+
+class Point {
+    private int x, y; // 한 점을 구성하는 x, y 좌표
+
+    public void set(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void showPoint() {
+        System.out.println("(" + x + "," + y + ")");
+    }
+    
+}
+// point를 상속받은 ColorPoint 선언
+class ColorPoint extends Point {
+    private String color; // 점의 색
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void showColorPoint() { // 컬러 점의 좌표 출력
+        System.out.print(color);
+        showPoint(); // point의 showPoint() 호출
+    }
+    
+}
+```
+
+
 ## 25년 4월 17일(7주차)
 * 생성자(Constructor)의 종류 default, 
 * this_Reference (this.member 형태로 멤버를 접근할 때 사용)
