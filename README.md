@@ -20,6 +20,7 @@
 * import로 package 사용, 소스에 클래스 이름의 완전 경로명 사용 ex: java.util.Scanner scanner = new java.util.Scanner(System.in);, java.util.*;은 하위 패키지의 클래스는 포함하지 않음
 * 소스 파일의 맨 앞에 컴파일 후 저장될 패키지 지정 -> package 패키지명;
 * defalut package : package 선언문이 없으면 컴파일러는 클래스나 인터페이스를 디폴트 패키지에 소속 시킴
+* package 운영 방법은 패키지 이름은 도메인 기반으로 시작 -> 충돌 방지 / 모듈별 분리 가능
 
 ```
 interface PhoneInterface { // 인터페이스 선언
