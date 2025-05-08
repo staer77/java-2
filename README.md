@@ -2,9 +2,68 @@
 
 ####
 1. 이름 학번 h1 제일 위에 기재
-2. 날짜(수차)
+2. 날짜(주차)
 3. 배운내용 & 코드
 4. 최근 날짜가 제일 위로 올라오게
+
+## 25년 5월 8일(10주차)
+* 추상(abstract) method : 메소드의 코드는 없고 원형만 선언 // abstract public String getName(); <- 추상 메소드
+* 추상 클래스 : abstract 선언한 클래스 // abstract class name {} <- 추상 클래스, 인스턴스 생성 불가(객체를 만들 수 없음, 레퍼런스 변수 선언 가능), 추상 클래스를 상속 받으면 추상 클래스 됌 / 서브 클래스도 abstract로 선언해야 함, 추상 클래스 구현 : 서브 클래스에서 슈퍼 클래스의 추상 메소드 구현(오버라이딩) / 추상 클래스 구현한 서브 클래스는 추상 클래스 아님
+* 추상 클래스의 목적은 상속을 위한 슈퍼 클래스로 활용하는 것, 서브 클래스에서 추상 메소드 구현, 다형성(이름은 같은데 기능은 다름) 실현
+* 자바의 인터페이스는 인터페이스가 맞는 모듈을 조립하듯이 응용프로그램을 작성하기 위해서 사용
+* interface 구성 요소 : 상수 , 추상 메소드, 디폴트 메소드, private, static / 변수 빼고 다 됌
+* interface 간에 상속 가능, 다중 상속 허용(일반 상속에서는 허용X)
+* interface 구현 : 인터페이스의 추상 메소드를 모두 구현한 클래스 작성, implements 키워드 사용, 여러 개의 인터페이스 동시 구현 가능
+* package는 클래스 파일들을 묶어 놓은 directory, 하나의 응용프로그램은 1개 이상의 패키지로 작성, jar 파일로 압축 가능
+* module은 여러 패키지와 이미지 드으이 자원을 모아 놓은 container, 하나의 모듈을 하나의 .jmod 파일에 저장
+* 모듈화 : 클래스들은 패키지로 만들고, 다시 패키지를 모듈로 만듦
+* import로 package 사용, 소스에 클래스 이름의 완전 경로명 사용 ex: java.util.Scanner scanner = new java.util.Scanner(System.in);, java.util.*;은 하위 패키지의 클래스는 포함하지 않음
+* 소스 파일의 맨 앞에 컴파일 후 저장될 패키지 지정 -> package 패키지명;
+* defalut package : package 선언문이 없으면 컴파일러는 클래스나 인터페이스를 디폴트 패키지에 소속 시킴
+
+```
+interface PhoneInterface { // 인터페이스 선언
+    final int TIMEOUT = 10000; // 상수 필드 선언
+
+    void sendCall(); // 추상 메소드
+
+    void receiveCall(); // 추상 메소드
+
+    default void printLogo() { // 디폴트 메소드
+        System.out.println("** Phone **");
+    }
+    
+}
+
+class SamsungPhone implements PhoneInterface { // 인터페이스 구현
+    // PhoneInterface의 모든 메소드 구현
+    @Override
+    public void sendCall() {
+        System.out.println("띠리리리링");
+    }
+
+    @Override
+    public void receiveCall(){
+        System.out.println("전화가 왔습니다다");
+    }
+
+    // 메소드 추가 작성
+    public void flash() {
+        System.out.println("전화기에 불이 켜졌습니다.");
+    }
+    
+}
+
+public class Ex56InterfaceEx {
+    public static void main(String[] args) {
+        SamsungPhone phone = new SamsungPhone();
+        phone.printLogo();
+        phone.sendCall();
+        phone.receiveCall();
+        phone.flash();
+    }
+}
+```
 
 ## 25년 4월 18일(9주차, 보강)
 * static 제약조건, final class and method
