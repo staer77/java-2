@@ -8,10 +8,56 @@
 
 ## 25년 5월 15일(11주차)
 * package의 운영 방법 : 기능 / 역할 별로 하위 패캐지를 구분 -> utils, controller, service 등, 디렉토리 구조와 package 선언을 정확히 일치해야 함, import는 필요한 만큼만 전체 사용은 좋지 않음.
+* 모듈 개념 : 패키지와 이미지 등의 리소스를 담은 컨테이너, (.jmod)로 저장
+* 자바 플랫폼의 모듈화
+* 자바 모듈화의 목적은 자바 컴포넌트들을 필요에 따라 조립하여 사용하기 위함, 필요 없는 모듈이 로드 되지 않게 함
+* 자바 모듈과 패키지 구조
+* JDK의 주요 패키지
+* Object 클래스 : 모든 자바 클래스는 반드시 Object를 상속받도록 자동 컴파일, 모든 클래스의 수퍼 클래스, 모든 클래스가 상속받는 공통 메소드 포함
+* 객체 속성 -> Object 클래스는 객체의 속성을 나타내는 메소드 제공
+* toString() method,객체를 문자열로 변환 -> 각 클래스는 toString()을 오버라이딩하여 자신만의 문자열 리턴 가능, 객체를 문자열로 변환
+* 객체 비교(==) 와 equals() method : == 연산자 -> Object Reference 비교, boolean equals(Object obj) -> 두 객체의 내용물 비교, 객체의 내용물을 비교하기 위해 클래스의 멤버로 작성
 * 
 
 ```
+class Rect {
+    int width, height;
 
+    public Rect(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Rect)) return false; // obj가 Rect 타입이 아님
+        Rect p = (Rect) obj;
+        return this.width * this.height == p.width * p.height;
+        // Point p = (Point)obj; // obj를 Point 타입으로 다운 캐스팅
+        // if (width*height == p.width * p.height) return true;
+        // else return false;
+    }
+}
+
+public class Ex64RectEx {
+    public static void main(String[] args) {
+        Point3 a = new Point3(2, 3); // 면적 6
+        Point3 b = new Point3(2, 3); // 면적 6
+        Point3 c = new Point3(3, 4); // 면적 12
+
+        if (a == b) {
+            System.out.println("a == b");
+        }
+
+        if (a.equals(b)) {
+            System.out.println("a is equal to b");
+        }
+
+        if (a.equals(c)) {
+            System.out.println("a is equal to c");
+        }
+    }
+}
 ```
 
 ## 25년 5월 8일(10주차)
