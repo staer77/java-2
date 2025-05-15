@@ -17,7 +17,12 @@
 * 객체 속성 -> Object 클래스는 객체의 속성을 나타내는 메소드 제공
 * toString() method,객체를 문자열로 변환 -> 각 클래스는 toString()을 오버라이딩하여 자신만의 문자열 리턴 가능, 객체를 문자열로 변환
 * 객체 비교(==) 와 equals() method : == 연산자 -> Object Reference 비교, boolean equals(Object obj) -> 두 객체의 내용물 비교, 객체의 내용물을 비교하기 위해 클래스의 멤버로 작성
-* 
+* Wrapper class : 자바의 기본 타입을 클래스화 한 8개 클래스를 통칭, 객체만 사용할 수 있는 컬렉션 등에 기본 타입의 값을 사용하기 위해 Wrapper 객체로 만들어 사용
+* boxing or unboxing -> 박싱은 기본 타입의 값을 Wrapper 객체로 변환하는 것, 언박싱은 Wrapper 객체에 들어 있는 기본 타입의 값을 빼내는 것. 박싱의 반대, 자동 박싱과 자동 언박싱 -> JDK 1.5부터 박싱과 언박싱은 자동으로 이루어지도록 컴파일됨
+* String 클래스는 문자열을 나타냄, 스트링 리터럴은 String 객체로 처리됨
+* 스트링 리터럴 -> JVM 내부에서 리터럴 테이블에 저장되고 관리됨, 응용프로그램에서 공유됨, String s = "Hello";, new String()으로 생성된 스트링 -> 스트링 객체는 Heep에 생성, 스트링은 공유되지 않음
+* 스트링 객체의 주요 특징은 수정 불가능
+* String 활용 스트링 비교에 == 연산자 절대 사용 금지, int compareTo(String anotherString) -> 문자열이 같ㅇ느면 0 리턴, 이 문자열이 anotherString 보다 먼저 나오면 음수 리턴 나중에 나오면 양수 리턴, 공백 제거, String trim()
 
 ```
 class Rect {
@@ -41,9 +46,9 @@ class Rect {
 
 public class Ex64RectEx {
     public static void main(String[] args) {
-        Point3 a = new Point3(2, 3); // 면적 6
-        Point3 b = new Point3(2, 3); // 면적 6
-        Point3 c = new Point3(3, 4); // 면적 12
+        Rect a = new Rect(2, 3); // 면적 6
+        Rect b = new Rect(2, 3); // 면적 6
+        Rect c = new Rect(3, 4); // 면적 12
 
         if (a == b) {
             System.out.println("a == b");
