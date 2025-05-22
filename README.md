@@ -7,9 +7,75 @@
 4. 최근 날짜가 제일 위로 올라오게
 
 ## 25년 5월 22일(12주차)
-* 
+* StringBuffer class -> 가변 크기의 버퍼를 가지고 있어 문자열 수정 가능, 문자열의 수정이 많은 작업에 적합
+* StringTokenizer class -> 구분 문자(delimiter, 문자열을 구분할 때 사용되는 문자)를 기준으로 문자열을 분리하는 클래스, token : 구분 문자로 분리된 문자열, & -> 구분 문자열
+* csv -> comma-separated values, 쉼표로 구분된 값
+* 반복 횟수가 정해지면 for문 조건이면 while문
+* Math class -> 기본 산술 연산 메소드를 제공하는 클래스, 모든 메소드는 static으로 선언 - 클래스 이름으로 호출 가능, Math.random() 메소드로 난수 발생 0보다 크거나 같고 1.0보다 작은 실수 난수 발생, import.util.Random class를 이용하여 난수 발생 가능
+-----------------------------------------
+* Generic and Collection
+* Collection = element(요소)라고 불리는 가변 개수의 객체들의 저장소 - 객체들의 컨테이너라고 불림, 요소의 개수에 따라 크기 자동 조절, 요소의 삽입 / 삭제에 따른 요소의 위치 자동 이동, 고정 크기의 배열을 다루는 어려움 해소, 다양한 객체들의 삽입 / 삭제 / 검색 등의 관리 용이
+* 배열은 선언할 때 처음부터 정함, 컬렉션은 가변임(flexible)
+* 컬렉션은 제네릭 기법으로 구현
+* 제네릭 -> 특정 타입만 다루지 않고, 여러 종류의 타입으로 변신할 수 있도록 클래스나 메소들르 일반화 시키는 기법, 클래스나 인터페이스 이름에 <E>, <K>, <V> 등 타입 매개변수 포함
+* 제네릭 컬렌션 사례 : 벡터 Vector<E>, <E>에서 E에 구체적인 타입을 주어 구체적인 타입만 다루는 벡터로 활용, 정수만 다루는 컬렉션 벡터 Vector<Integer>, 문자열만 다루는 컬렉션 벡터 Vector<String>
+* 컬렉션의 요소는 객체만 가능 int, char, double 등의 기본 타입으로 구체화 불가
+* 제네릭은 클래스나 메소드를 형판에서 찍어내듯이 생산할 수 있도혹 일반화된 형판을 만드는 기법, 모든 종류의 데이터 타입을 다룰 수 있도록 일반화된 타입 매개 변수로 클래스(인터페이스)나 메소드를 작성하는 기법
+* Vector<E> 특성
+* <E>에 사용할 요소의 특정 타입을 구체화, 배열을 가변 크기로 다룰 수 있게 하는 컨테이너(배열의 길이 제한 극복, 자동으로 길이 조절), 요소 객체들을 삽입 / 삭제 / 검색하는 컨테이너, Vector에 삽입 가능한 것(객체, null, 기본 타입 값은 Wrapper 객체로 만들어 저장), 삽입은 맨 뒤  중간에 가능, 삭제는 임의의 위체에 있는 객체 가능
+* 컬렉션과 자동 박싱 / 언박싱 -> 기본 타입 데이터를 Wrapper 객체로 만들어 삽입, 컬렉션으로부터 요소를 얻어올 때, Wrapper class로 casting 필요 하지만 JDK 1.5부터는 자동 박싱 / 언박싱이 작동하여 기본 타입 값 삽입 가능 그러나 태입 매개 변수를 기본 타입으로 구체화 할 수는 없음
+* 컬렉션 생성문의 진화 - java 7 이후 컴파일러의 타입 추론 기능 추가, 다이아몬드 연산자<>에 타입 배개변수 생략 java 10 이후 var 키워드 도입, 컴파일러의 지역 변수 타입 추론 가능
+* ArrayList : 가변 크기 배열을 구현한 클래스 - <E>에 요소로 사용할 특정 타입으로 구체화, 벡터와 거의 동일(스레드 동기화 기능은 없음), 다수 스레드가 동시에 ArrayList에 접근할 때 동기화되지 않음, 개발자가 스레드 동기화 코드 작성
+* ArrayList 와 Vector는 모두 동적으로 크기가 늘어나는 배열 기반의 리스트 클래스, ArrayList(스레드 안전X) 싱글 스레드 적합 - Vector(스레드 안전Os) 동기화로 인한 오버헤드 발생
+* 컬렉션의 순차 검색을 위한 Iterator<E> 인터페이스 - 리스트 구조의 컬렉션에서 요소의 순차 검색을 위한 인터페이스, ,벡터, 어레이리스트, 링크드리스트가 상속받는 인터페이스
+* Iterator 객체 얻어내기 - 컬렉션의 iterator() 메소드 호출 : 해당 컬렉션을 순차 검색할 수 있는 Iterator 객체 리턴
+* Hashmap<K, V> - key / value의 쌍으로 구성되는 요소를 다루는 컬렉션, 값을 검색하기 위해서는 반드시 키 이용, 삽입 put() method / 검색 get() method
+* 제네릭 클래스 작성 : 클래스 이름 옆에 일반화된 타입 매개 변수 추가, 제네릭 타입에 구체적인 타입을 지정하여 객체를 생성하는 것을 구체화라고 함
+----------------------------------------------
+* 자바 GUI 스윙 기초
+* GUI : 그래픽으로 화면을 구성하고 i/o 장치로 입력 받을 수 있도록 지원하는 사용자 인터페이스, AWT와 Swing 패키지에 강력한 GUI 컴포넌트 제공(현재 Swing만 사용, AWT 기반임)
+* AWT(Abstract windowing Toolkit) packge : heavy weight component임, 운영체제에 의해 이루어지며, 운영체제에 지원을 만이 소모하고 부담을 줌, 운영체제가 직접 그리기 때문에 속도는 빠름
+* SWing : AWT 기능 + 추가된 고급 컴포넌트, AWT 컴포넌트를 모두 스윙으로 재작서으 AWT 컴포넌트 이름 앞에 J자를 덧붙임, 자바 언어로 구현, 스윙 컴퍼넌트는 light weight component임, Swing는 직접 그려서 운영체제 부담주지 않음
+
 
 ```
+import java.util.*;
+
+public class Ex75HashMapDicEx {
+    public static void main(String[] args) {
+        HashMap<String, String> dic = new HashMap<String, String>();
+
+        dic.put("baby", "아기");
+        dic.put("love", "사랑");
+        dic.put("apple", "사과");
+
+        Set<String> keys = dic.keySet(); // 모든 키를 Set 컬렉션에 받아옴옴
+        Iterator<String> it = keys.iterator(); // Set에 접근하는 Iterator 리턴턴
+
+        while(it.hasNext()) {
+            String key = it.next();
+            String value = dic.get(key);
+            System.out.println("(" + key + "," + value + ")");
+        }
+
+    System.out.println();
+
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("찾고 싶은 단어는?");
+            String eng = scanner.next();
+
+            String kor = dic.get(eng);
+
+            if (kor == null) {
+                System.out.println(eng + "는 없는 단어 입니다");
+            } else {
+                System.out.println(kor);
+            }
+        }
+    }
+}
 
 ```
 
