@@ -6,6 +6,66 @@
 3. 배운내용 & 코드
 4. 최근 날짜가 제일 위로 올라오게
 
+## 25년 5월 29일 (13주차)
+* 컨테이너 : 다른 컴포넌트를 포함할 수 있는 GUI 컴포넌트, 다른 컨테이너에 포함될 수 있음, AWT, Swing
+* 컴포넌트 : 컨테이너에 포함되어야 화면에 출력될 수 있는 GUI 객체, 다른 컴포넌트를 포함할 수 없는 순수 컴포넌트, 모든 GUI 컴포넌트가 상속받는 클래스, 스윙 컴포넌트가 상속받는 클래스
+* 최상위 컨테이너 : 다른 컨테이너에 포함되지 않고도 화면에 출력되며, 독립적으로 존재 가능한 컨테이너, 스스로 화면에 자신을 출력하는 컨테이너 -> JFRame, JDialog, JApplet
+* 최상위 컨테이너를 바닥에 깔고, 그 위에 컨테이너를 놓고, 다시 컴포넌트를 쌓아가는 방식, 즉 레고 블록을 쌓는 듯이 GUI 프로그램을 작성
+* Swing GUI 프로그램 : 1. 프레임 만들기 2. main() 메소드 작성 3. 스윙 프레임에 스윙 컴포넌트 붙이기, import awt, swing 필요
+* Swing 프레임 : 모든 스윙 컴포넌트를 담는 최상위 컨테이너, 스윙 프레임(JFrame) 기본 구성 : 프레임, 메뉴바, 컨텐트팬
+* JFram 클래스를 상속받는 클래스 작성, 프레임 크기 반드시 지정, 프레임을 화면에 출력하는 setVisible(true) 반드시 필요
+* 스윙 응용프로그램에서 main()의 기능 최소화, 시작점으로서의 기능만, 프레임을 생성하는 정도의 코드
+* 프레임에 컴포넌트 붙이기 -> super()나 setTitle() 이용, 컨텐트팬(스윙 컴포넌트들이 부착되는 공간)에 컴포넌트 달기, 스윙 프레임에 붙은 디폴트 컨텐트팬 알아내기, 붙이고 변경
+* JDK1.5 이전에는 반드시 컨텐트팬에 컴포넌트 부착, 그 이후에는 컴포넌트를 부착하면 프레임이 대신 컨텐트팬에 부착, 이전처럼 부착하는 것이 바람직함, 컴포넌트의 부모가 프레임이 아닌 컨텐트팬임을 명확히 사용할 필요
+* Swing 응용 프로그램 종료 System.exit(0); -> 언제 어디서나 무조건 종료, 프레임과 함께 프로그램을 종료 시키는 방법 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);, 종료버튼 클릭만 하면 종료된 것이 아님
+* 컨테이너와 배치, 배치관리자 개념 - 컨테이너마다 하나의 배치관리자 존재, 컨테이너에 부착되는 컴포넌트의 위치와 크기 결정, 컨테이너의 크기가 변경되면 컴포넌트의 위치와 크기 재설정
+* 배치 관리자 대표 유형 4가지 - FlowLayout, BorderLayout, GridLayout, CardLayout
+* 컨테이너에 새로운 배치관리자 설정 - setLayout(LayoutManager lm) 메소드 호출 lm을 새로운 배치관리자로 설정
+* FlowLayout(int align, int hGap, int vGap) - 왼쪽에서 오른쪽으로 배치, 위에서 아래로 순서대로 배치, (정렬 방법 지정, 좌우 수평, 상하 수평)
+* BorderLayout - add(Component comp, int index) : comp를 index의 공간에 배치 - 동 서 남 북 중앙
+* GridLayout - 컨테이너 공간을 사각형 격자(그리드)로 분할하고 각 셀에 컴포넌트 하나씩 배치
+* CardLayout - 여러겹으로 배치
+* 배치관리자가 없는 컨테이너 - 응용프로그램에서 직접 컴포넌트의 크기와 위치를 결정하고자 하는 경우 1. 개발자 임의로 결정 2. 컴포넌트들의 위치와 크기가 수시로 변하는 경우(ex: Game) 3. 여러 컴포넌트들이 서로 겹쳐 출력하고자 하는 경우, 배치관리자 없으면 컴포넌트에 대한 어떤 배치도 없음
+* void setSize(int width, int height) - 크기 조정, void setLocation(int x, int y) - 위치 설정, void setBounds(int x, int y, int width, int height) - 위치 크기 둘 다 조정
+
+* 이벤트 기반 프로그래밍(Event Driven Programming) - 이벤트의 발생에 의해 프로그램 흐름이 결정되는 방식, 반대되는 개념은 배치 실행(bacth programming) - 프로그램의 개발자가 프로그램의 흐름을 결정하는 방식, 리스너는 이벤트가 발생했을 때 왔는지 안 왔는지 확인, 헨들러는 이벤트가 발생했을 때 실행되는 함수
+* 이벤트 처리 과정 -> 발생 - 객체 생성 - 리스너 찾기 - 리스너 실행
+* 이벤트 객체는 발생한 이벤트에 관학 정보를 가진 객체, 포함되는 정보는 이벤트 종류와 소스 / 발생한 화면 좌표 및 컴포넌트 내 좌표 / 버튼이나 메뉴 아이템의 문자열 / 마우스 버튼 번호 및 클릭 횟수 / 키의 코드 값과 문자 값 / 체크박스, 라디오 버튼 등과 같은 컴포넌트에 이벤트가 발생하였다면 체크 상태
+* 이벤트 소스를 알아 내는 메소드 : Object getSource() 오브젝트 타입으로 리턴하므로 캐스팅(형변환)하여 사용
+* 리스너 인터페이스 - 이벤트 리스너 : 이벤트를 처리하는 자바 프로그램 코드, 클래스로 작성
+* 사용자 정의 리스너는 인터페이스 상속, 모든 추상 메소드(이름만 있는 메소드) 구현
+* 이벤트 리스너 작성 과정 -> 선택 - 리스너 클래스 작성 - 컴포넌트에 이벤트 리스너 등록
+* 이벤트 리스너 작성 방법 - 1. 독립 클래스 작성 : 리스너를 완전한 클래스로 작성 2. 내부(inner) 클래스 : 클래스 안에 또 다른 클래스, 특정 클래스 안에서 작성 3. 익명(anonymous) 클래스 작성 : 간단한 리스너 작성, 코드가 간단한 경우
+
+
+```
+jdk 1.5 이후 스타일
+import javax.swing.*;
+import java.awt.*;
+
+public class Ex82ContentPaneEx extends JFrame {
+    public Ex82ContentPaneEx() {
+        setTitle("ContentPane과 JFrame 예제"); // 프레임의 타이틀 달기
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Container contentPane = getContentPane(); // 컨텐트팬 알아내기
+        contentPane.setBackground(Color.ORANGE); // 오렌지색 배경 설정
+        contentPane.setLayout(new FlowLayout()); // 컨텐트팬에 FlowLayout
+
+        contentPane.add(new JButton("OK")); // OK 버튼 달기기
+        contentPane.add(new JButton("Cancel")); // Cancel 버튼 달기
+        contentPane.add(new JButton("Ignore")); // Ignore 버튼 달기
+
+        setSize(300,150); // 프레임 크기 300 x 150 설정
+        setVisible(true); // 화면에 프레임 출력
+    }
+
+    public static void main(String[] args) {
+        new Ex82ContentPaneEx();
+    }
+}
+```
+
 ## 25년 5월 22일(12주차)
 * StringBuffer class -> 가변 크기의 버퍼를 가지고 있어 문자열 수정 가능, 문자열의 수정이 많은 작업에 적합
 * StringTokenizer class -> 구분 문자(delimiter, 문자열을 구분할 때 사용되는 문자)를 기준으로 문자열을 분리하는 클래스, token : 구분 문자로 분리된 문자열, & -> 구분 문자열
