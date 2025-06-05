@@ -6,6 +6,57 @@
 3. 배운내용 & 코드
 4. 최근 날짜가 제일 위로 올라오게
 
+## 25년 6월 5일 (14주차)
+* 리스너는 이벤트가 생겼는지 안 생겼는지 확인하는 것
+* 익명 클래스(anonymous class) : 이름 없는 클래스 (클래스 선언 + 인스턴스 생성)을 한 번에 달성, 메소드의 개수가 1, 2개인 액션리스너, 아이템리스너에 대해 주요 사용
+* 어댑터 클래스 : 리스너의 모든 메소드를 단순 리턴하도록 만든 클래스(JDK에서 제공), 리스너의 추상 메소드를 모두 구현해야 하는 부담, 하나만 처리하고자 하는 경우에도 나머지 메소드를 모두 구현해야 하는 부담
+* Key 이벤트와 포커스 -> 키 입력시 이벤트 발생, 이벤트 받을 수 있는 조건(모든 컴포넌트, 현재 focus를 가진 컴포넌트가 키 이벤트 독점), focus : 컴포넌트나 응용프로그램이 키 이벤트를 독점하는 권한
+* keyListener도 어댑터가 있음
+* Unicode key(ex: ecu-kr, utp-8, 16, 32 클수록 무거움) 전 세계의 문자를 컴퓨터에서 일관되게 표현하기 위한 코드 체계
+* keyEvent 객체
+* 컴퓨터 좌표는 수학점 개념과 조금 다름, y축 x축 봤을 때 좌측 상단이 0임 up을 하려면 -10을 해서 아래로 내려감, 그래서 setLocation(getX(), getY - 10);을 하는거임
+* 리스너 핸들러는 관리하는 것임
+* 스윙 컴포넌트 - GUI 프로그래밍 방법 1. 컴포넌트 2. 그래픽
+* JComponent 스윙 컴포넌트의 멤버를 모두 상속받는 슈퍼 클래스, 추상 클래스, 스윙 컴포넌트들이 상속받는 공통 메소드와 상수 구현
+* 그래픽, 자바 스레드 기초, 입출력 스트림과 파일 입출력, 자바 소켓 프로그래밍 4장 5장 8장 9장 학습도 하면 굿
+
+
+```
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class IndepClassListener extends JFrame {
+    public IndepClassListener() {
+        setTitle("Action 이벤트 리스터 예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        JButton btn = new JButton("Action");
+        btn.addActionListener(new Ex91MyActionListener());
+        c.add(btn);
+        setSize(250, 120);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new IndepClassListener();
+    }
+}
+// 독립된 클래스로 이벤트 리스너 작성
+class Ex91MyActionListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+        JButton b = (JButton)e.getSource();
+
+        if(b.getText().equals("Action")) {
+            b.setText("액션");
+        } else {
+            b.setText("Action");
+        }
+    }
+}
+```
+
 ## 25년 5월 29일 (13주차)
 * 컨테이너 : 다른 컴포넌트를 포함할 수 있는 GUI 컴포넌트, 다른 컨테이너에 포함될 수 있음, AWT, Swing
 * 컴포넌트 : 컨테이너에 포함되어야 화면에 출력될 수 있는 GUI 객체, 다른 컴포넌트를 포함할 수 없는 순수 컴포넌트, 모든 GUI 컴포넌트가 상속받는 클래스, 스윙 컴포넌트가 상속받는 클래스
